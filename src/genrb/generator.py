@@ -916,7 +916,7 @@ def deserialize_fn_generator(msg_context, spec, is_numpy=False):
     #Instantiate embedded type classes
     for type_, name in spec.fields():
         if msg_context.is_registered(type_):
-            yield "  if @%s == nil"%name
+            yield "  if @%s.nil?"%name
             yield "    @%s = %s"%(name, compute_constructor(msg_context, spec.package, type_))
             yield "  end"
     yield "  end_point = 0" #initialize var
